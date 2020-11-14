@@ -1,0 +1,26 @@
+name: build-test
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15.x
+      - uses: actions/checkout@v2
+      - name: Setup localstack
+        run: docker-compose up -d localstack
+      - name: Wait for localstack
+        run: docker-compose run --rm wait-for-localstack
+      - name: Create S3 bucket
+        run: docker-compose exec -d localstack awslocal s3 mb s3://go-localstack-s3-example
+      - name: Test
+        run: go test -v -covermode=count -coverprofile=coverage.out
+        env:
+          AWS_ACCESS_KEY_ID: dummy-key-id
+          AWS_SECRET_ACCESS_KEY: dummy-secret-key
+          AWS_ENDPOINT: http://localhost:4566
+          AWS_REGION: eu-west-1
+          S3_BUCKET: go-localstack-s3-example

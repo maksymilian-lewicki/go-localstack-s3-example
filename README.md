@@ -1,4 +1,6 @@
 # go localstack s3 example
+[![Actions Status](https://github.com/maksymilian-lewicki/go-localstack-s3-example/workflows/build-test/badge.svg)](https://github.com/maksymilian-lewicki/go-localstack-s3-example/actions)
+
 Example of a simple application in Golang, which shows how to use S3 from localstack.
 
 ## localstack in docker
