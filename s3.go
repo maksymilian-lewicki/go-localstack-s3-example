@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 )
 
+// S3PutObject Upload file to S3
 func S3PutObject(path string, file []byte) (output *s3.PutObjectOutput, err error) {
 	awsEndpoint := os.Getenv("AWS_ENDPOINT")
 	awsRegion := os.Getenv("AWS_REGION")
