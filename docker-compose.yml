@@ -1,0 +1,30 @@
+version: "3.4"
+
+services:
+  app:
+    build: .
+    depends_on:
+      - localstack
+    env_file:
+      - _env
+
+  localstack:
+    image: localstack/localstack:latest
+    restart: always
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3:4566
+      - DEFAULT_REGION=eu-west-1
+      - DATA_DIR=/tmp/localstack/data
+    volumes:
+      - localstack-data:/tmp/localstack
+
+  wait-for-localstack:
+    image: busybox:latest
+    entrypoint: ["sh", "-c"]
+    command:
+      - until nc -v -w 1 -z localstack 4566 &> /dev/null; do sleep 0.1; done
+
+volumes:
+  localstack-data:
