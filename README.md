@@ -1,6 +1,7 @@
 # go localstack s3 example
 [![Actions Status](https://github.com/maksymilian-lewicki/go-localstack-s3-example/workflows/build-test/badge.svg)](https://github.com/maksymilian-lewicki/go-localstack-s3-example/actions)
 [![Coverage Status](https://coveralls.io/repos/github/maksymilian-lewicki/go-localstack-s3-example/badge.svg)](https://coveralls.io/github/maksymilian-lewicki/go-localstack-s3-example)
+[![Go Report Card](https://goreportcard.com/badge/github.com/maksymilian-lewicki/go-localstack-s3-example)](https://goreportcard.com/report/github.com/maksymilian-lewicki/go-localstack-s3-example) 
 
 Example of a simple application in Golang, which shows how to use S3 from localstack.
 
